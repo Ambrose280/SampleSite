@@ -1,72 +1,207 @@
 <!DOCTYPE html>
-<html lang="en" >
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>four text-shadows</title>
-  <link rel="stylesheet" href="./style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plant Cell Exploration</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #e0f2f7, #c8e6c9); /* Gradient background */
+        }
 
+        .slide {
+            position: absolute;
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+            background: inherit; /* Inherit gradient */
+        }
+
+        .slide.active {
+            opacity: 1;
+        }
+
+        .slide h1, .slide p {
+            text-align: center;
+            margin: 15px;
+            color: #333;
+            opacity: 0;
+            animation: textFadeIn 1s ease-out forwards;
+        }
+
+        @keyframes textFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .cell-image {
+            max-width: 50%;
+            max-height: 40%;
+            margin-bottom: 20px;
+            opacity: 0;
+            transform: rotate(180deg) scale(0);
+            animation: imageReveal 1.5s ease-out forwards;
+        }
+
+        @keyframes imageReveal {
+            to {
+                opacity: 1;
+                transform: rotate(0deg) scale(1);
+            }
+        }
+
+        .animated-line {
+            width: 0;
+            height: 3px;
+            background: linear-gradient(to right, #4CAF50, #8BC34A);
+            animation: lineExpand 1.5s ease-out forwards;
+            margin: 20px auto;
+        }
+
+        @keyframes lineExpand {
+            to {
+                width: 70%;
+            }
+        }
+
+        .animated-circle {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: radial-gradient(circle, #a5d6a7, #66bb6a);
+            opacity: 0;
+            transform: scale(0.5);
+            animation: circlePulse 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes circlePulse {
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .animated-fade {
+            opacity: 0;
+            animation: fadeInOut 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes fadeInOut {
+            50% {
+                opacity: 1;
+            }
+        }
+
+        .animated-rotate {
+            animation: rotate360 4s linear infinite;
+        }
+
+        @keyframes rotate360 {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .animated-slide-in {
+            transform: translateX(-100%);
+            animation: slideIn 1s ease-out forwards;
+        }
+
+        @keyframes slideIn {
+            to {
+                transform: translateX(0);
+            }
+        }
+
+        .animated-scale-up {
+            transform: scale(0.5);
+            animation: scaleUp 1.5s ease-out forwards;
+        }
+
+        @keyframes scaleUp {
+            to {
+                transform: scale(1);
+            }
+        }
+    </style>
 </head>
 <body>
-<!-- partial:index.partial.html -->
-<div class="container">
-<div class="title delay0">T</div>
-<div class="title delay1">h</div>
-<div class="title delay2">e</div>
-  <div class="space"> </div>
-<div class="title delay3">q</div>
-<div class="title delay4">u</div>
-<div class="title delay5">i</div>
-<div class="title delay6">c</div>
-<div class="title delay7">k</div>
-  <div class="space"> </div>
-<div class="title delay8">b</div>
-<div class="title delay9">r</div>
-<div class="title delay1">o</div>
-<div class="title delay2">w</div>
-<div class="title delay3">n</div>
-    <div class="space"> </div>
 
-<div class="title delay4">f</div>
-<div class="title delay5">o</div>
-<div class="title delay6">x</div>
-  
-    <div class="space"> </div>
+    <div class="slide active" id="slide1">
+        <h1 class="animated-scale-up">Welcome to Plant Cell Adventures!</h1>
+        <p class="animated-fade">Embark on a journey into the microscopic world of plants.</p>
+    </div>
 
-<div class="title delay7">j</div>
-<div class="title delay8">u</div>
-<div class="title delay9">m</div>
-<div class="title delay1">p</div>
-<div class="title delay2">s</div>
-  
-    <div class="space"> </div>
-  
-<div class="title delay3">o</div>
-<div class="title delay4">v</div>
-<div class="title delay5">e</div>
-<div class="title delay6">r</div>
+    <div class="slide" id="slide2">
+        <h1 class="animated-slide-in">The Mighty Cell Wall</h1>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Plant_cell_wall_diagram-en.svg/640px-Plant_cell_wall_diagram-en.svg.png" alt="Cell Wall" class="cell-image">
+        <p class="animated-rotate">A rigid barrier, providing structure and protection.</p>
+        <div class="animated-line"></div>
+    </div>
 
-    <div class="space"> </div>
-  
-<div class="title delay7">t</div>
-<div class="title delay8">h</div>
-<div class="title delay9">e</div>
-  
-    <div class="space"> </div>
-  
-<div class="title delay0">l</div>
-<div class="title delay1">a</div>
-<div class="title delay2">z</div>  
-<div class="title delay3">y</div>  
+    <div class="slide" id="slide3">
+        <h1 class="animated-scale-up">Chloroplast: Energy Factory</h1>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/Chloroplast_diagram-en.svg/640px-Chloroplast_diagram-en.svg.png" alt="Chloroplast" class="cell-image">
+        <p>Photosynthesis happens here, creating life's fuel.</p>
+        <div class="animated-circle"></div>
+    </div>
 
-  <div class="space"> </div>
+    <div class="slide" id="slide4">
+        <h1 class="animated-slide-in">The Versatile Vacuole</h1>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/Vacuole_diagram-en.svg/640px-Vacuole_diagram-en.svg.png" alt="Vacuole" class="cell-image">
+        <p class="animated-rotate">Storage, waste disposal, and turgor pressure control.</p>
+        <div class="animated-fade">
+            <p>It's a multi-tasking marvel!</p>
+        </div>
+    </div>
 
-<div class="title delay4">d</div>  
-<div class="title delay5">o</div>  
-<div class="title delay6">g</div> <div class="title delay7">.</div>  
+    <div class="slide" id="slide5">
+        <h1 class="animated-scale-up">Nucleus: The Cell's Brain</h1>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Nucleus_diagram-en.svg/640px-Nucleus_diagram-en.svg.png" alt="Nucleus" class="cell-image">
+        <p>Contains DNA, directing all cellular activities.</p>
+        <p>Thanks for exploring Plant Cells!</p>
+    </div>
 
-  
-</div>
-<!-- partial -->
-  
+    <script>
+        const slides = document.querySelectorAll('.slide');
+        let currentSlide = 0;
+        const slideDuration = 7000; // 7 seconds
+
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.classList.remove('active');
+                if (i === index) {
+                    slide.classList.add('active');
+                }
+            });
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % slides.length;
+            showSlide(currentSlide);
+        }
+
+        function startSlideshow() {
+            setInterval(nextSlide, slideDuration);
+        }
+
+        showSlide(currentSlide);
+        startSlideshow();
+    </script>
+
 </body>
 </html>
