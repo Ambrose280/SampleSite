@@ -3,13 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Plant Cell Exploration</title>
+    <title>Plant Cell Dynamics</title>
     <style>
         body {
             margin: 0;
             overflow: hidden;
-            font-family: 'Arial', sans-serif;
-            background: linear-gradient(135deg, #e0f2f7, #c8e6c9); /* Gradient background */
+            font-family: 'Courier New', monospace; /* Monospace font for typing effect */
+            background: linear-gradient(135deg, #f8f8ff, #e8f5e9);
+            color: #222;
         }
 
         .slide {
@@ -22,7 +23,7 @@
             flex-direction: column;
             opacity: 0;
             transition: opacity 1s ease-in-out;
-            background: inherit; /* Inherit gradient */
+            background: inherit;
         }
 
         .slide.active {
@@ -31,110 +32,85 @@
 
         .slide h1, .slide p {
             text-align: center;
-            margin: 15px;
-            color: #333;
+            margin: 20px;
+            font-size: 2.5em; /* Larger text */
             opacity: 0;
-            animation: textFadeIn 1s ease-out forwards;
         }
 
-        @keyframes textFadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
+        .slide h1.active, .slide p.active {
+            opacity: 1;
+        }
+
+        .typing-animation {
+            overflow: hidden;
+            white-space: nowrap;
+            border-right: .15em solid orange;
+            animation: typing 3s steps(40, end), blink-caret .75s step-end infinite;
+            font-size: 3em;
+        }
+
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: orange; }
+        }
+
+        .text-drop {
+            transform: translateY(-100%);
+            animation: textDrop 2s ease-out forwards;
+        }
+
+        @keyframes textDrop {
             to {
-                opacity: 1;
                 transform: translateY(0);
             }
         }
 
-        .cell-image {
-            max-width: 50%;
-            max-height: 40%;
-            margin-bottom: 20px;
-            opacity: 0;
-            transform: rotate(180deg) scale(0);
-            animation: imageReveal 1.5s ease-out forwards;
-        }
-
-        @keyframes imageReveal {
-            to {
-                opacity: 1;
-                transform: rotate(0deg) scale(1);
-            }
-        }
-
-        .animated-line {
-            width: 0;
-            height: 3px;
-            background: linear-gradient(to right, #4CAF50, #8BC34A);
-            animation: lineExpand 1.5s ease-out forwards;
-            margin: 20px auto;
-        }
-
-        @keyframes lineExpand {
-            to {
-                width: 70%;
-            }
-        }
-
-        .animated-circle {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            background: radial-gradient(circle, #a5d6a7, #66bb6a);
-            opacity: 0;
+        .text-scale {
             transform: scale(0.5);
-            animation: circlePulse 2s ease-in-out infinite alternate;
+            animation: textScale 2s ease-out forwards;
         }
 
-        @keyframes circlePulse {
+        @keyframes textScale {
             to {
-                opacity: 1;
                 transform: scale(1);
             }
         }
 
-        .animated-fade {
+        .text-fade {
             opacity: 0;
-            animation: fadeInOut 3s ease-in-out infinite alternate;
+            animation: textFade 2s ease-out forwards;
         }
 
-        @keyframes fadeInOut {
-            50% {
+        @keyframes textFade {
+            to {
                 opacity: 1;
             }
         }
 
-        .animated-rotate {
-            animation: rotate360 4s linear infinite;
+        .text-rotate {
+            transform: rotate(-90deg);
+            animation: textRotate 2s ease-out forwards;
         }
 
-        @keyframes rotate360 {
+        @keyframes textRotate {
             to {
-                transform: rotate(360deg);
+                transform: rotate(0deg);
             }
         }
 
-        .animated-slide-in {
+        .text-slide-in {
             transform: translateX(-100%);
-            animation: slideIn 1s ease-out forwards;
+            animation: textSlideIn 2s ease-out forwards;
         }
 
-        @keyframes slideIn {
+        @keyframes textSlideIn {
             to {
                 transform: translateX(0);
-            }
-        }
-
-        .animated-scale-up {
-            transform: scale(0.5);
-            animation: scaleUp 1.5s ease-out forwards;
-        }
-
-        @keyframes scaleUp {
-            to {
-                transform: scale(1);
             }
         }
     </style>
@@ -142,55 +118,58 @@
 <body>
 
     <div class="slide active" id="slide1">
-        <h1 class="animated-scale-up">Welcome to Plant Cell Adventures!</h1>
-        <p class="animated-fade">Embark on a journey into the microscopic world of plants.</p>
+        <h1 class="typing-animation">Plant Cell Genesis</h1>
+        <p class="text-fade">Unveiling the core of plant life.</p>
     </div>
 
     <div class="slide" id="slide2">
-        <h1 class="animated-slide-in">The Mighty Cell Wall</h1>
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Plant_cell_wall_diagram-en.svg/640px-Plant_cell_wall_diagram-en.svg.png" alt="Cell Wall" class="cell-image">
-        <p class="animated-rotate">A rigid barrier, providing structure and protection.</p>
-        <div class="animated-line"></div>
+        <h1 class="text-drop">The Fortifying Cell Wall</h1>
+        <p class="text-slide-in">Structural integrity and protection.</p>
+        <p class="text-rotate">A rigid, protective barrier.</p>
     </div>
 
     <div class="slide" id="slide3">
-        <h1 class="animated-scale-up">Chloroplast: Energy Factory</h1>
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/Chloroplast_diagram-en.svg/640px-Chloroplast_diagram-en.svg.png" alt="Chloroplast" class="cell-image">
-        <p>Photosynthesis happens here, creating life's fuel.</p>
-        <div class="animated-circle"></div>
+        <h1 class="text-scale">Chloroplast: Solar Powerhouse</h1>
+        <p class="text-drop">Photosynthesis: Light to energy.</p>
+        <p class="text-fade">Converting sunlight into vital sugars.</p>
     </div>
 
     <div class="slide" id="slide4">
-        <h1 class="animated-slide-in">The Versatile Vacuole</h1>
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/Vacuole_diagram-en.svg/640px-Vacuole_diagram-en.svg.png" alt="Vacuole" class="cell-image">
-        <p class="animated-rotate">Storage, waste disposal, and turgor pressure control.</p>
-        <div class="animated-fade">
-            <p>It's a multi-tasking marvel!</p>
-        </div>
+        <h1 class="text-slide-in">The Multifaceted Vacuole</h1>
+        <p class="text-rotate">Storage, waste, and turgor control.</p>
+        <p class="text-scale">A dynamic cellular reservoir.</p>
     </div>
 
     <div class="slide" id="slide5">
-        <h1 class="animated-scale-up">Nucleus: The Cell's Brain</h1>
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Nucleus_diagram-en.svg/640px-Nucleus_diagram-en.svg.png" alt="Nucleus" class="cell-image">
-        <p>Contains DNA, directing all cellular activities.</p>
-        <p>Thanks for exploring Plant Cells!</p>
+        <h1 class="text-fade">Nucleus: The DNA Hub</h1>
+        <p class="text-drop">Control center of cellular operations.</p>
+        <p class="text-slide-in">The blueprint of life, within.</p>
     </div>
 
     <script>
         const slides = document.querySelectorAll('.slide');
         let currentSlide = 0;
-        const slideDuration = 7000; // 7 seconds
+        const slideDuration = 8000; // 8 seconds
 
         function showSlide(index) {
             slides.forEach((slide, i) => {
                 slide.classList.remove('active');
                 if (i === index) {
                     slide.classList.add('active');
+                    animateText(slide);
                 }
             });
         }
 
+        function animateText(slide) {
+            const textElements = slide.querySelectorAll('h1, p');
+            textElements.forEach(element => {
+                element.classList.add('active');
+            });
+        }
+
         function nextSlide() {
+            slides[currentSlide].querySelectorAll('h1, p').forEach(el=> el.classList.remove('active'));
             currentSlide = (currentSlide + 1) % slides.length;
             showSlide(currentSlide);
         }
